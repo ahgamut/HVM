@@ -988,7 +988,7 @@ pub fn run_io(
           // IO.do_fetch String (String -> IO a) : (IO a)
           IO_DO_FETCH => {
             if let Some(url) = readback_string(mem, funs, get_loc(term, 0)) {
-              let body = reqwest::blocking::get(url).unwrap().text().unwrap(); // FIXME: treat
+              let body = ureq::get(&url[..]).call().unwrap().into_string().unwrap();
               let cont = ask_arg(mem, term, 2);
               let app0 = alloc(mem, 2);
               let text = make_string(mem, &body);

@@ -1,3 +1,4 @@
+*.com
 libcosmo
 .DS_Store
 tmp/
